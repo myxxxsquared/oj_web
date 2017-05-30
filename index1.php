@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<?php 
+<?php
 
 session_start();
 if(! $_SESSION["user"]){
@@ -13,30 +13,42 @@ if(! $_SESSION["user"]){
 
 <head>
 
-<link rel="stylesheet" href="css/style2.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<style type="text/css">
+    td, th {
+        padding: 2px;
+    }
+    caption {
+        text-align: center;
+        font-size: 20px;
+    }
+</style>
 
 <title>在线评测系统</title>
 
-<script type="text/javascript"> 
-function del(){ 
-	if(confirm("确定删除？")){ 
-		return true; 
-	} 
-		return false; 
-} 
-</script> 
+<script type="text/javascript">
+function del(){
+	if(confirm("确定删除？")){
+		return true;
+	}
+	return false;
+}
+</script>
 
 </head>
 
 <body>
-<h1> 题目列表 </h1>
-<p>
-欢迎你，<?php echo $_SESSION["user"]; ?> 
+<div class="jumbotron">
+<div class="container">
+<h2>
+欢迎你，<?php echo $_SESSION["user"]; ?>
+</h2>
 <a href="index1.php">首页</a>
 <a href="Logout.php">注销</a>
-</p>
-<table>
+<table class="table table-striped" align="center">
 <caption>题目列表</caption>
 <tr><th>题目编号</th><th>题目名称</th></tr>
 <?php
@@ -58,8 +70,8 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 ?>
 
 </table>
-
-
+</div>
+</div>
 </body>
 
 </html>
