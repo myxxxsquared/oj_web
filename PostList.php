@@ -41,7 +41,7 @@ function del(){
 <a href="Logout.php">注销</a>
 
 <?php
-if($_GET['problemId']){
+if($_GET['problemId'] && $_GET['problemId']!="")){
 	printf('<a href="PostAdd.php?problemId=%s">发布新讨论</a>', $_GET['problemId'] );
 }else{
 	echo '<a href="PostAdd.php>发布新讨论</a>';
