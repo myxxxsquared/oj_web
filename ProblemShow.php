@@ -18,8 +18,12 @@ if(! $_SESSION["user"] && !$_SESSION["admin"] ){
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-
 <title>在线评测系统</title>
+<style type="text/css">
+    td {
+        padding: 6px;
+    }
+</style>
 </head>
 
 <body>
@@ -74,9 +78,9 @@ $format = '
     <td>%s MB</td>
 </table>
 题目描述：
-<p>
-%s
-</p>
+<div class="well">
+<p>%s</p>
+</div>
 
 ';
 
