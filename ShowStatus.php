@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<?php 
+<?php
 
 session_start();
 if(! $_SESSION["user"]){
@@ -15,29 +15,36 @@ if(! $_SESSION["user"]){
 
 <link rel="stylesheet" href="css/style2.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
 <title>在线评测系统</title>
 
-<script type="text/javascript"> 
-function del(){ 
-	if(confirm("确定删除？")){ 
-		return true; 
-	} 
-		return false; 
-} 
-</script> 
+<script type="text/javascript">
+function del(){
+	if(confirm("确定删除？")){
+		return true;
+	}
+		return false;
+}
+</script>
 
 </head>
 
 <body>
+<div class="jumbotron">
+<div class="container">
 <h1> 状态列表 </h1>
 <p>
-欢迎你，<?php echo $_SESSION["user"]; ?> 
+欢迎你，<?php echo $_SESSION["user"]; ?>
+</p>
+
 <a href="index1.php">首页</a>
 <a href="Logout.php">注销</a>
-</p>
-<table>
-<caption>状态列表</caption>
+
+<div class="container" style="margin-top: 20px;">
+<table class="table table-striped">
 <tr><th>提交号</th><th>题目号</th><th>用户</th><th>提交时间</th><th>结果</th><th>运行时间</th><th>内存用量(字节)</th></tr>
 <?php
 $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
@@ -65,8 +72,9 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 ?>
 
 </table>
-
-
+</div>
+</div>
+</div>
 </body>
 
 </html>

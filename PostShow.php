@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 
 
 session_start();
@@ -14,11 +14,23 @@ if(! $_SESSION["user"]){
 
 <link rel="stylesheet" href="css/style2.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <title>在线评测系统</title>
+<style type="text/css">
+    td {
+        padding: 5px;
+    }
+    table {
+        margin: 10px;
+    }
+</style>
 </head>
 
 <body>
+<div class="jumbotron">
+<div class="container">
 <?php
 
 
@@ -31,13 +43,14 @@ $q="select * from `Post` where postId=".$_GET['postId'];
 $result=mysql_query($q);
 $row=mysql_fetch_array($result);
 $format = '
-<h1>%s. %s</h1>
-题号: %s<br />
-作者: %s<br />
-正文：
-<p>
+<h2>%s. %s</h2>
+<table>
+<tr><td>题号: </td><td>%s</td>
+<tr><td>作者:</td><td>%s</td>
+</table>
+<div class="well"><p>
 %s
-</p>
+</p></div>
 
 ';
 
@@ -45,6 +58,8 @@ printf($format,$row["postId"], $row["postTitle"], $row["problemId"],$row["userId
 
 
 ?>
+</div>
+</div>
 </body>
 
 </html>

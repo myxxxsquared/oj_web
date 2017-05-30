@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 
 
 session_start();
@@ -14,26 +14,53 @@ if(! $_SESSION["admin"]){
 
 <link rel="stylesheet" href="css/style2.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <title>在线评测系统</title>
+<style type="text/css">
+    label {
+        font-size: 16px;
+    }
+    td {
+        padding: 5px;
+    }
+    table {
+        margin: 10px;
+    }
+</style>
 </head>
 
 <body>
-<h1> 题目信息 </h1>
+<div class="jumbotron">
+<div class="container">
+<h2> 题目信息 </h2>
 
 <form action="ProblemInsert.php" method="post" enctype="multipart/form-data">
-题目标题：<input type="text" name="problemTitle" value = ""/><br />
-时间限制：<input type="text" name="timeLimit" value = ""/><br />
-内存限制：<input type="text" name="memLimit" value= "" /><br />
-题目描述：<br />
-<textarea name="problemTxt" style="width:800px;height:800px;" >
+<div class="container">
+<table>
+<tr>
+<td><label>题目标题：</label></td><td><input type="text" name="problemTitle" value = "" class="form-control"/></td>
+</tr>
+<tr>
+<td><label>时间限制：</label></td><td><input type="text" name="timeLimit" value = "" class="form-control"/></td>
+</tr>
+<tr>
+<td><label>内存限制：</label></td><td><input type="text" name="memLimit" value= "" class="form-control"/></td>
+</tr>
+</table>
+
+<label>题目描述：</label>
+<textarea name="problemTxt" style="height:300px;" class="form-control">
 
 </textarea><br />
-标准输入: <input type="file" name="problemInput" /><br />
-标准输出: <input type="file" name="problemOutput" /><br />
-<input type="submit" />
+<label>标准输入: </label><input type="file" name="problemInput" /><br />
+<label>标准输出: </label><input type="file" name="problemOutput" /><br />
+<input type="submit" class="btn-primary"/>
 </form>
-
+</div>
+</div>
+</div>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 
 
 session_start();
@@ -14,41 +14,69 @@ if(! $_SESSION["user"]){
 
 <link rel="stylesheet" href="css/style2.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <title>在线评测系统</title>
+<style type="text/css">
+    td {
+        padding: 5px;
+    }
+    label {
+        font-size: 18px;
+    }
+</style>
 </head>
 
 <body>
-<h1> 发布讨论 </h1>
+<div class="jumbotron">
+<div class="container">
+<h2> 发布讨论 </h2>
 
 <form action="PostInsert.php" method="post">
-标题：<input type="text" name="postTitle" value = ""/><br />
-题号:
+<div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+<table>
+<tr>
+    <td><label>标题：</label></td>
+    <td><input type="text" name="postTitle" value = "" class="form-control"/></td>
+</tr>
+<tr>
+<td><label>题号:</label></td>
+<td>
 <?php
 
 $format = '
-<input type="text" name="problemId" value="%s" /><br />
+<input type="text" name="problemId" value="%s" class="form-control"/><br />
 ';
 if($_GET['problemId']){
 	printf($format, $_GET['problemId']);
 }else{
 	printf($format, "");
 }
-
 ?>
-作者: 
+</td>
+<tr>
+<td><label>作者:</label></td>
+<td>
 <?php
 echo $_SESSION['user'];
 ?>
-<br />
+</td>
+</tr>
+</table>
+</div>
 
-正文：<br />
-<textarea name="postTxt" style="width:800px;height:800px;" >
-
-</textarea><br />
-<input type="submit" />
+<div class="container" style="margin-bottom: 30px">
+<h4>正文：</h4>
+<textarea name="postTxt" style="height:300px;" class="form-control">
+</textarea>
+</div>
+<div style="text-align: right; padding-right: 30px;">
+<input type="submit" class="btn-primary" />
+</div>
 </form>
-
+</div>
+</div>
 </body>
 
 </html>

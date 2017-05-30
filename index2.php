@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 
-<?php 
-
-
+<?php
 session_start();
-if(! $_SESSION["admin"]){
-	header("location:Login.php");
-}
-
-
-
-
-
+header("location:ProblemManage.php");
 ?>
 
 <html lang="zh-cn">
@@ -19,7 +10,9 @@ if(! $_SESSION["admin"]){
 <head>
 
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 <title>在线评测系统</title>
 
 
@@ -29,24 +22,24 @@ if(! $_SESSION["admin"]){
 </head>
 
 <body>
+<div class="jumbotron">
+<div class="container">
 <div class="loginBox">
 
-<h1 style="text-align: middle;"> 在线评测系统 </h1>
+<h2 style="text-align: middle;"> 在线评测系统 </h2>
 
-<div class="loginBoxCenter">
-
-<p>
 <a href="index2.php">首页</a>
 <a href="Logout.php">注销</a>
-</p>
 
+<div style="margin: 20px;">
 <ul >
 <li><a href="ProblemManage.php">题目管理</a></li>
 <li><a href="PostManage.php">讨论管理</a></li>
 </ul>
-
 </div>
 
+</div>
+</div>
 </div>
 </body>
 
