@@ -28,13 +28,13 @@ else{
 			if(!is_dir("submissions/".$getId)){
 				mkdir("submissions/".$getId);
 			}
-			move_uploaded_file($_FILES["problemInput"]["tmp_name"], "submissions/".$getId."/stdin"); 
-			move_uploaded_file($_FILES["problemOutput"]["tmp_name"], "submissions/".$getId."/stdout"); 
-			echo "<script>alert('提交成功'); window.location.href='index1.php';</script>";
+			move_uploaded_file($_FILES["problemInput"]["tmp_name"], "submissions/".$getId."/stdin");
+			move_uploaded_file($_FILES["problemOutput"]["tmp_name"], "submissions/".$getId."/stdout");
+			echo "<script>alert('提交成功'); window.location.href='index2.php';</script>";
 
 		}
 		else{
-			echo "<script>alert('提交失败: 数据库错误'); window.location.href='ProblemManage.php';</script>";
+			echo "<script>alert('提交失败: 数据库错误'); window.location.href='index2.php';</script>";
 		}
 
     }

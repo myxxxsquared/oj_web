@@ -3,7 +3,7 @@
 <?php
 
 session_start();
-if(! $_SESSION["user"]){
+if(! $_SESSION["user"] && ! $_SESSION["admin"]){
 	header("location:Login.php");
 }
 
@@ -18,6 +18,7 @@ if(! $_SESSION["user"]){
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/common.css" type="text/css" />
 
 <title>在线评测系统</title>
 
@@ -33,19 +34,23 @@ function del(){
 </head>
 
 <body>
+<?php
+if (! $_SESSION["admin"]) {
+    include('nav1.php');
+} else {
+    include('nav2.php');
+}
+?>
 <div class="jumbotron">
 <div class="container">
-<h1> 状态列表 </h1>
+<h2> 状态列表 </h2>
 <p>
 欢迎你，<?php echo $_SESSION["user"]; ?>
 </p>
 
-<a href="index1.php">首页</a>
-<a href="Logout.php">注销</a>
-
 <div class="container" style="margin-top: 20px;">
 <table class="table table-striped">
-<tr><th>提交号</th><th>题目号</th><th>用户</th><th>提交时间</th><th>结果</th><th>运行时间</th><th>内存用量(字节)</th></tr>
+<tr><th>提交号</th><th>题目号</th><th>用户</th><th>提交时间</th><th>结果</th><th>运行时间 (ms)</th><th>内存用量 (Byte)</th></tr>
 <?php
 $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
 //连接数据库
@@ -75,6 +80,9 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 </div>
 </div>
 </div>
+<script type="text/javascript">
+    $('#nav-status').addClass('active');
+</script>
 </body>
 
 </html>

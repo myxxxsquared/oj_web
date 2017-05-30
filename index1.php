@@ -17,7 +17,8 @@ if(! $_SESSION["user"]){
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<style type="text/css">
+<link rel="stylesheet" href="css/common.css" type="text/css" />
+<!-- <style type="text/css">
     td, th {
         padding: 2px;
         text-align: center;
@@ -26,7 +27,7 @@ if(! $_SESSION["user"]){
         text-align: center;
         font-size: 20px;
     }
-</style>
+</style> -->
 
 <title>在线评测系统</title>
 
@@ -42,13 +43,12 @@ function del(){
 </head>
 
 <body>
+<?php include('nav1.php') ?>
 <div class="jumbotron">
 <div class="container">
 <h2>
 欢迎你，<?php echo $_SESSION["user"]; ?>
 </h2>
-<a href="index1.php">首页</a>
-<a href="Logout.php">注销</a>
 <div class="container" style="width: 70%;">
 <table class="table table-striped" align="center">
 <caption>题目列表</caption>
@@ -75,6 +75,9 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 </div>
 </div>
 </div>
+<script type="text/javascript">
+    $('#nav-mainpage').addClass('active');
+</script>
 </body>
 
 </html>

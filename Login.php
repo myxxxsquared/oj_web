@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<?php 
+<?php
 
 session_start();
 
@@ -17,15 +17,20 @@ session_start();
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<style type="text/css">
+<link rel="stylesheet" href="css/common.css" type="text/css" />
+<!-- <style type="text/css">
     .input-field {
         margin: 10px;
     }
     .form-control2 {
         display: inline;
     }
+</style> -->
+<style type="text/css">
+    .jumbotron {
+        margin-top: 0px;
+    }
 </style>
-
 </head>
 
 <body>
@@ -46,28 +51,35 @@ session_start();
                     </tr>
                     <tr>
                         <td>身份: </td>
-                        <td><select name="userclass" class="form-control input-field">
+                        <td><select name="userclass" class="form-control input-field" id="admin">
                             <option value="admin">管理员</option>
                             <option value="user" selected="true">用户</option>
                         </select></td>
                     </tr>
-                    <tr>
+                    <tr id="switch">
                         <td></td>
                         <td>
                             <label><input type="radio" name="select" value="SignIn" class="form-control form-control2" checked="checked"/>登录</label>
                             <label><input type="radio" name="select" value="SignUp" class="form-control form-control2" />注册</label>
                         </td>
                     </tr>
-                    <tr>
-                        <td><input type="submit" name="submit" value="提交" class="form-control"/></td>
-                        <td></td>
-                    </tr>
                 </table>
+                <div style="text-align: center;">
+                    <input type="submit" name="submit" value="提交" class="btn-primary"/>
+                </div>
             </div>
         </form>
     </div>
 </div>
-
+<script type="text/javascript">
+    $('#admin').change(function() {
+        if ($(this).val() == 'admin') {
+            $('#switch').hide();
+        } else if ($(this).val() == 'user') {
+            $('#switch').show();
+        }
+    });
+</script>
 </body>
 
 </html>

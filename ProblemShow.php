@@ -18,8 +18,10 @@ if(! $_SESSION["user"] && !$_SESSION["admin"] ){
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/common.css" type="text/css" />
 <title>在线评测系统</title>
-<style type="text/css">
+
+<!-- <style type="text/css">
     td {
         padding: 6px;
         padding-left: 20px;
@@ -30,10 +32,20 @@ if(! $_SESSION["user"] && !$_SESSION["admin"] ){
         margin-top: 20px;
         margin-bottom: 20px;
     }
-</style>
+    .jumbotron {
+        margin-top: 30px;
+    }
+</style> -->
 </head>
 
 <body>
+<?php
+if (! $_SESSION["admin"]) {
+    include('nav1.php');
+} else {
+    include('nav2.php');
+}
+?>
 <div class="jumbotron">
 <div class="container">
 <h2> 题目信息 </h2>
@@ -66,7 +78,7 @@ $result=mysql_query($q);
 $row=mysql_fetch_array($result);
 $format = '
 <h2 align="center">%s. %s</h2>
-<div align="center"><a href="PostList.php?problemId=%s">讨论板</a></div>
+<div align="center"><a href="PostList.php?problemId=%s">前往本题讨论板</a></div>
 <table class="table-striped">
 <tr>
     <td>提交次数: </td>
@@ -78,7 +90,7 @@ $format = '
 </tr>
 <tr>
     <td>时间限制：</td>
-    <td>%s ms</td>
+    <td>%s s</td>
 </tr>
 <tr>
     <td>内存限制：</td>

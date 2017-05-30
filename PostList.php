@@ -4,7 +4,7 @@
 
 
 session_start();
-if(! $_SESSION["user"]){
+if(! $_SESSION["user"] && ! $_SESSION["admin"]){
 	header("location:Login.php");
 }
 
@@ -23,11 +23,12 @@ if(! $_SESSION["user"]){
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<style type="text/css">
+<link rel="stylesheet" href="css/common.css" type="text/css" />
+<!-- <style type="text/css">
 	label {
 		font-size: 18px;
 	}
-</style>
+</style> -->
 <title>在线评测系统</title>
 
 <script type="text/javascript">
@@ -42,22 +43,16 @@ function del(){
 </head>
 
 <body>
-
+<?php
+if (! $_SESSION["admin"]) {
+    include('nav1.php');
+} else {
+    include('nav2.php');
+}
+?>
 <div class="jumbotron">
 <div class="container">
-	<div class="container">
 		<h2> 讨论板 </h2>
-		<a href="index1.php">首页</a>
-		<a href="Logout.php">注销</a>
-<?php
-if($_GET['problemId'] && $_GET['problemId']!="") {
-	printf('<a href="PostAdd.php?problemId=%s">发布新讨论</a>', $_GET['problemId'] );
-}else{
-	echo '<a href="PostAdd.php">发布新讨论</a>';
-}
-
-?>
-	</div>
 
 <div class="container" style="margin: 30px;">
 	<form action="PostList.php" method="GET">
@@ -65,11 +60,20 @@ if($_GET['problemId'] && $_GET['problemId']!="") {
 		<div class="col-md-1" style="text-align: right; vertical-align: middle;"><label>题号：</label></div>
 		<div class="col-md-3"><input type="text" name="problemId" value="" class="form-control" /></div>
 		<div class="col-md-1"><input type="submit" value="查询"/></div>
+		<div class="col-md-7">
+<?php
+if($_GET['problemId'] && $_GET['problemId']!="") {
+	printf('<a href="PostAdd.php?problemId=%s">发布新讨论</a>', $_GET['problemId'] );
+}else{
+	echo '<a href="PostAdd.php">发布新讨论</a>';
+}
+?>
+		</div>
 		</div>
 	</form>
 </div>
 
-<div class="container" style="width: 70%;">
+<div class="container" style="width: 90%;">
 <table class="table table-striped">
 <tr><th>编号</th><th>标题</th><th>作者</th></tr>
 <?php
@@ -106,6 +110,9 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 
 </div>
 </div>
+<script type="text/javascript">
+    $('#nav-discuss').addClass('active');
+</script>
 </body>
 
 </html>

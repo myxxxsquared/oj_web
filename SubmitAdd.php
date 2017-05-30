@@ -30,7 +30,7 @@ else{
 			}
 			move_uploaded_file($_FILES["submitCode"]["tmp_name"], "dat/submissions/".$getId."/src.cpp");
 			shell_exec("/opt/OJ/judge/sendjudge.py ".$getId);
-			echo "<script>alert('提交成功'); window.location.href='index1.php';</script>";
+			echo "<script>alert('提交成功'); window.location.href='ShowStatus.php';</script>";
 		}
 		else{
 			echo "<script>alert('提交失败: 数据库错误'); window.location.href='index1.php';</script>";

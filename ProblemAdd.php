@@ -17,6 +17,7 @@ if(! $_SESSION["admin"]){
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/common.css" type="text/css" />
 <title>在线评测系统</title>
 <style type="text/css">
     label {
@@ -32,6 +33,13 @@ if(! $_SESSION["admin"]){
 </head>
 
 <body>
+<?php
+if (! $_SESSION["admin"]) {
+    include('nav1.php');
+} else {
+    include('nav2.php');
+}
+?>
 <div class="jumbotron">
 <div class="container">
 <h2> 题目信息 </h2>
@@ -43,10 +51,10 @@ if(! $_SESSION["admin"]){
 <td><label>题目标题：</label></td><td><input type="text" name="problemTitle" value = "" class="form-control"/></td>
 </tr>
 <tr>
-<td><label>时间限制：</label></td><td><input type="text" name="timeLimit" value = "" class="form-control"/></td>
+<td><label>时间限制 (s)：</label></td><td><input type="text" name="timeLimit" value = "" class="form-control"/></td>
 </tr>
 <tr>
-<td><label>内存限制：</label></td><td><input type="text" name="memLimit" value= "" class="form-control"/></td>
+<td><label>内存限制 (MB)：</label></td><td><input type="text" name="memLimit" value= "" class="form-control"/></td>
 </tr>
 </table>
 
@@ -61,6 +69,9 @@ if(! $_SESSION["admin"]){
 </div>
 </div>
 </div>
+<script type="text/javascript">
+    $('#nav-new').addClass('active');
+</script>
 </body>
 
 </html>
