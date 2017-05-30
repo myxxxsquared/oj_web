@@ -25,10 +25,10 @@ else{
 
 		if($res){
 			$getId=mysql_insert_id();
-			if(!is_dir("submissions/".$getId)){
-				mkdir("submissions/".$getId);
+			if(!is_dir("dat/submissions/".$getId)){
+				mkdir("dat/submissions/".$getId);
 			}
-			move_uploaded_file($_FILES["submitCode"]["tmp_name"], "submissions/".$getId."/src.cpp"); 
+			move_uploaded_file($_FILES["submitCode"]["tmp_name"], "dat/submissions/".$getId."/src.cpp");
 			system("srun /opt/OJ/judge/judge.py ".$getId);
 			echo "<script>alert('提交成功'); window.location.href='index1.php';</script>";
 		}
