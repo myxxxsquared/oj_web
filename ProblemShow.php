@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 
 
 session_start();
@@ -22,7 +22,6 @@ if(! $_SESSION["user"] && !$_SESSION["admin"] ){
 <body>
 <h1> 题目信息 </h1>
 
-<form action="" method="post">
 
 <?php
 
