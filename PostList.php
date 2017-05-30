@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<?php 
+<?php
 
 
 session_start();
@@ -20,23 +20,28 @@ if(! $_SESSION["user"]){
 
 <link rel="stylesheet" href="css/style2.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
 <title>在线评测系统</title>
 
-<script type="text/javascript"> 
-function del(){ 
-	if(confirm("确定删除？")){ 
-		return true; 
-	} 
-		return false; 
-} 
-</script> 
+<script type="text/javascript">
+function del(){
+	if(confirm("确定删除？")){
+		return true;
+	}
+	return false;
+}
+</script>
 
 </head>
 
 <body>
-<h1> 讨论板 </h1>
-<p>
+
+<div class="jumbotron">
+<div class="container">
+<h2> 讨论板 </h2>
 <a href="index1.php">首页</a>
 <a href="Logout.php">注销</a>
 
@@ -48,16 +53,18 @@ if($_GET['problemId']){
 }
 
 ?>
-</p>
 
 
 <form action="PostList.php" method="GET">
-题号：<input type="text" name="problemId" value="" />
-<input type="submit" value="查询"/>
+<div class="row">
+<div class="col-md-1">题号：</div>
+<div class="col-md-3"><input type="text" name="problemId" value="" class="form-control" /></div>
+<div class="col-md-1"><input type="submit" value="查询"/></div>
+</div>
 </form>
 
-<table>
-<caption>讨论板</caption>
+<div class="container" style="width: 70%;">
+<table class="table table-striped">
 <tr><th>编号</th><th>标题</th><th>作者</th></tr>
 <?php
 $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
@@ -89,8 +96,10 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 ?>
 
 </table>
+</div>
 
-
+</div>
+</div>
 </body>
 
 </html>
