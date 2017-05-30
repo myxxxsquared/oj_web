@@ -21,7 +21,7 @@ if(! $_SESSION["admin"]){
 <body>
 <h1> 题目信息 </h1>
 
-<form action="ProblemInsert.php" method="post">
+<form action="ProblemInsert.php" method="post" enctype="multipart/form-data">
 题目标题：<input type="text" name="problemTitle" value = ""/><br />
 时间限制：<input type="text" name="timeLimit" value = ""/><br />
 内存限制：<input type="text" name="memLimit" value= "" /><br />
