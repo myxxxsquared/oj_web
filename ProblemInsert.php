@@ -34,7 +34,7 @@ else{
 
 		}
 		else{
-			echo "<script>alert('提交失败: 数据库错误'); window.location.href='index1.php';</script>";
+			echo "<script>alert('提交失败: 数据库错误'); window.location.href='ProblemManage.php';</script>";
 		}
 
     }
