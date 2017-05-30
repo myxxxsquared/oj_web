@@ -28,8 +28,8 @@ else{
 			if(!is_dir("dat/problems/".$getId)){
 				mkdir("dat/problems/".$getId);
 			}
-			move_uploaded_file($_FILES["problemInput"]["tmp_name"], "dat/problems/".$getId); 
-			move_uploaded_file($_FILES["problemOutput"]["tmp_name"], "dat/problems/".$getId); 
+			move_uploaded_file($_FILES["problemInput"]["tmp_name"], "dat/problems/".$getId."/stdin"); 
+			move_uploaded_file($_FILES["problemOutput"]["tmp_name"], "dat/problems/".$getId."/stdout"); 
 			echo "<script>alert('提交成功'); window.location.href='index1.php';</script>";
 
 		}
