@@ -22,6 +22,13 @@ if(! $_SESSION["user"] && !$_SESSION["admin"] ){
 <style type="text/css">
     td {
         padding: 6px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .btn-primary {
+        margin: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 </style>
 </head>
@@ -39,14 +46,13 @@ mysql_select_db('OJ',$link);//选择数据库
 mysql_query("set names utf8");//设置编码格式
 
 
-
 $q1="select COUNT(*) as c from `Submit` where problemId=".$_GET['problemId'];
 $result1=mysql_query($q1);
 $row1=mysql_fetch_array($result1);
 
 $num1 =  $row1['c'];
 
-$q2=sprintf("select COUNT(*) as c from `Submit` where (problemId=%s and result='Accepted'" , $_GET['problemId']);
+$q2=sprintf("select COUNT(*) as c from `Submit` where problemId=%s and result='Accepted'" , $_GET['problemId']);
 $result2 = mysql_query($q2);
 $row2 = mysql_fetch_array($result2);
 
@@ -59,16 +65,17 @@ $q="select * from `Problem` where problemId=".$_GET['problemId'];
 $result=mysql_query($q);
 $row=mysql_fetch_array($result);
 $format = '
-<h2>%s. %s</h2>
+<h2 align="center">%s. %s</h2>
+<div align="center"><a href="PostList.php?problemId=%s">讨论板</a></div>
 <table class="table-striped">
 <tr>
-    <td>提交人数: </td>
+    <td>提交次数: </td>
     <td>%s</td>
 </tr>
 <tr>
-    <td>通过人数: </td>
+    <td>通过次数: </td>
     <td>%s</td>
-<tr>
+</tr>
 <tr>
     <td>时间限制：</td>
     <td>%s ms</td>
@@ -76,36 +83,32 @@ $format = '
 <tr>
     <td>内存限制：</td>
     <td>%s MB</td>
+</tr>
 </table>
-题目描述：
+<h4>题目描述：</h4>
 <div class="well">
 <p>%s</p>
 </div>
 
 ';
 
-printf($format,$row["problemId"], $row["problemTitle"], $num1, $num2,$row["timeLimit"],$row["memLimit"], $row["problemTxt"]);
+printf($format, $row["problemId"], $row["problemTitle"], $_GET['problemId'], $num1, $num2,$row["timeLimit"],$row["memLimit"], $row["problemTxt"]);
 
 
 
 $format = '
 <form action="SubmitAdd.php" method="post" enctype="multipart/form-data">
-<p>
-提交代码：
+<h4>提交代码：</h4>
 <input type="hidden" name="problemId" value="%s"/>
 <input type="hidden" name="userId" value="%s" />
 <input type="file" name="submitCode" />
-<input type="submit" />
-</p>
+<input type="submit" class="btn-primary" />
 </form>
 ';
 
 if($_SESSION['user']){
 	printf($format, $_GET['problemId'], $_SESSION['user']);
 }
-
-$format= '<p><a href="PostList.php?problemId=%s">讨论板</a></p>';
-printf($format, $_GET['problemId']);
 
 ?>
 </div>

@@ -20,6 +20,7 @@ if(! $_SESSION["user"]){
 <style type="text/css">
     td, th {
         padding: 2px;
+        text-align: center;
     }
     caption {
         text-align: center;
@@ -48,6 +49,7 @@ function del(){
 </h2>
 <a href="index1.php">首页</a>
 <a href="Logout.php">注销</a>
+<div class="container" style="width: 70%;">
 <table class="table table-striped" align="center">
 <caption>题目列表</caption>
 <tr><th>题目编号</th><th>题目名称</th></tr>
@@ -70,6 +72,7 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 ?>
 
 </table>
+</div>
 </div>
 </div>
 </body>

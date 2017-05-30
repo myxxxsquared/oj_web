@@ -42,13 +42,13 @@
                         <td>身份: </td>
                         <td><select name="userclass" class="form-control input-field">
                             <option value="admin">管理员</option>
-                            <option value="user">用户</option>
+                            <option value="user" selected="true">用户</option>
                         </select></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <label><input type="radio" name="select" value="SignIn" class="form-control form-control2" />登录</label>
+                            <label><input type="radio" name="select" value="SignIn" class="form-control form-control2" checked="checked"/>登录</label>
                             <label><input type="radio" name="select" value="SignUp" class="form-control form-control2" />注册</label>
                         </td>
                     </tr>
