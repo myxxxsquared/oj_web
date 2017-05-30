@@ -20,14 +20,14 @@ $q = sprintf("INSERT INTO `OJ`.`Post` (`postId`, `postTitle`, `postTxt`, `userId
 		$res = mysql_query($q);
 
 		if($res){
-			echo "<script>alert('发布成功'); window.location.href='index1.php';</script>";
+			echo "<script>alert('发布成功'); window.location.href='PostList.php?problemId=". $_POST["problemId"]. "';</script>";
 
 		}
 		else{
-			echo "<script>alert('发布失败'); window.location.href='index1.php';</script>";
+			echo "<script>alert('发布失败'); window.location.href='PostList.php?problemId=". $_POST["problemId"]. "';</script>";
 		}
 
-    
+
 
 
 
