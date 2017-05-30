@@ -67,7 +67,7 @@ printf($format,$row["problemId"], $row["problemTitle"], $num1, $num2,$row["timeL
 
 
 $format = '
-<form action="SubmitAdd.php" method="post">
+<form action="SubmitAdd.php" method="post" enctype="multipart/form-data">
 <p>
 提交代码：
 <input type="hidden" name="problemId" value="%s"/>
