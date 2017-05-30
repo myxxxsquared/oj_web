@@ -5,14 +5,6 @@
 
 session_start();
 
-if($_SESSION["admin"]){
-	header("location:index2.php");
-}
-
-if(! $_SESSION["user"] && !$_SESSION["admin"] ){
-	header("location:index1.php");
-}
-
 ?>
 
 <html lang="zh-cn">
