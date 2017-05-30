@@ -17,7 +17,7 @@
 <body>
 
 <div class="jumbotron">
-    <div class="container">
+    <div class="container text-center">
         <h1 class="text-center"> 用户登录 </h1>
         <form action="check_session_login.php" method="post" name="login_form" onsubmit=" return encrypt();" class="login">
             <div class="form-group put-right">
