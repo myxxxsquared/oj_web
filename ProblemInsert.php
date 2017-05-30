@@ -25,11 +25,11 @@ else{
 
 		if($res){
 			$getId=mysql_insert_id();
-			if(!is_dir("submissions/".$getId)){
-				mkdir("submissions/".$getId);
+			if(!is_dir("dat/submissions/".$getId)){
+				mkdir("dat/submissions/".$getId);
 			}
-			move_uploaded_file($_FILES["problemInput"]["tmp_name"], "submissions/".$getId); 
-			move_uploaded_file($_FILES["problemOutput"]["tmp_name"], "submissions/".$getId); 
+			move_uploaded_file($_FILES["problemInput"]["tmp_name"], "dat/submissions/".$getId); 
+			move_uploaded_file($_FILES["problemOutput"]["tmp_name"], "dat/submissions/".$getId); 
 			echo "<script>alert('提交成功'); window.location.href='index1.php';</script>";
 
 		}
