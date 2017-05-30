@@ -29,7 +29,7 @@ else{
 				mkdir("dat/submissions/".$getId);
 			}
 			move_uploaded_file($_FILES["submitCode"]["tmp_name"], "dat/submissions/".$getId."/src.cpp");
-			system("srun /opt/OJ/judge/judge.py ".$getId);
+			system("/opt/slurm/bin/srun /opt/OJ/judge/judge.py ".$getId);
 			echo "<script>alert('提交成功'); window.location.href='index1.php';</script>";
 		}
 		else{
