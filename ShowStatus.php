@@ -45,10 +45,17 @@ $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失
 mysql_select_db('OJ',$link);//选择数据库
 mysql_query("set names utf8");//设置编码格式
 
-$q="select * from Submit";//设置查询指令
+$q="select * from Submit order by submitId desc";//设置查询指令
 $result=mysql_query($q);//执行查询
+$myiiiii = 0;
+
 while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出一条
 {
+    $myiiiii = $myiiiii + 1;
+    if($myiiiii > 30)
+    {
+        break;
+    }
 	$format = '<tr>
 	<td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>
 	</tr>';
