@@ -15,12 +15,17 @@ if(! $_SESSION["user"] && !$_SESSION["admin"] ){
 
 <link rel="stylesheet" href="css/style2.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
 <title>在线评测系统</title>
 </head>
 
 <body>
-<h1> 题目信息 </h1>
+<div class="jumbotron">
+<div class="container">
+<h2> 题目信息 </h2>
 
 
 <?php
@@ -50,11 +55,24 @@ $q="select * from `Problem` where problemId=".$_GET['problemId'];
 $result=mysql_query($q);
 $row=mysql_fetch_array($result);
 $format = '
-<h1>%s. %s</h1>
-提交人数: %s<br />
-通过人数: %s<br />
-时间限制：%s ms<br />
-内存限制：%s MB<br />
+<h2>%s. %s</h2>
+<table class="table-striped">
+<tr>
+    <td>提交人数: </td>
+    <td>%s</td>
+</tr>
+<tr>
+    <td>通过人数: </td>
+    <td>%s</td>
+<tr>
+<tr>
+    <td>时间限制：</td>
+    <td>%s ms</td>
+</tr>
+<tr>
+    <td>内存限制：</td>
+    <td>%s MB</td>
+</table>
 题目描述：
 <p>
 %s
@@ -86,7 +104,8 @@ $format= '<p><a href="PostList.php?problemId=%s">讨论板</a></p>';
 printf($format, $_GET['problemId']);
 
 ?>
-
+</div>
+</div>
 
 
 
