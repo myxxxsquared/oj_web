@@ -34,7 +34,7 @@ $stmt = $dbConnection->prepare("select * from `Problem` where problemId = ?");
 $stmt->bind_param('d', $_GET['problemId']);
 $stmt->execute();
 $result = $stmt->get_result();
-$row=$result->fetch_assoc($result);
+$row=$result->fetch_assoc();
 
 $format = '
 <table>

@@ -15,7 +15,7 @@ else
 	$prbluser = $_SESSION["user"];
 }
 
-$stmt = $dbConnection->prepare("INSERT INTO `OJ`.`Post` (`postTitle`, `postTxt`, `userId`, `problemId`) VALUES (?, ?, ?, ?)");
+$stmt = $dbConnection->prepare("INSERT INTO `Post` (`postTitle`, `postTxt`, `userId`, `problemId`) VALUES (?, ?, ?, ?)");
 $stmt->bind_param('sssd', $_POST["postTitle"], $_POST["postTxt"],$prbluser, $_POST["problemId"]);
 
 if($stmt->execute()) {
@@ -25,4 +25,5 @@ if($stmt->execute()) {
 }
 
 $stmt->close();
+$dbConnection->close();
 ?>
