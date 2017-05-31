@@ -34,7 +34,7 @@ if($_POST["select"]=="SignIn") {
 		}
 	}
 } else if($_POST["select"]=="SignUp") {
-	$stmt = $dbConnection->prepare("select * from `Admin` where adminId = ? and password = ?");
+	$stmt = $dbConnection->prepare("INSERT INTO `User` (userId, password) VALUES (?, ?)");
 	$stmt->bind_param('ss', $_POST["username"], $_POST["password"]);
 	$stmt->execute();
 	
