@@ -23,14 +23,14 @@ if($_POST["select"]=="SignIn") {
 		$stmt->bind_result($password);
 
 		if(is_null($stmt->fetch())) {
+			echo "<script>alert('没有此用户，请重试'); window.location.href='Login.php';</script>";
+		} else {
 			if($password == $_POST["password"]) {
 				$_SESSION["user"] = $_POST["username"];
 				header("location:index1.php");
 			} else {
 				echo "<script>alert('密码错误，请重试'); window.location.href='Login.php';</script>";
 			}
-		} else {
-			echo "<script>alert('没有此用户，请重试'); window.location.href='Login.php';</script>";
 		}
 	}
 } else if($_POST["select"]=="SignUp") {
