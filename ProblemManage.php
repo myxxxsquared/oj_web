@@ -63,7 +63,7 @@ $format = '<tr>
 	<td style="width: 20%%;"><a href="ProblemEdit.php?problemId=%s">编辑</a></td>
 	</tr>';
 
-while($row=$result->fetch_assoc($result))
+while($row=$result->fetch_assoc())
 {
 	printf($format, $row["problemId"], $row["problemId"], $row["problemTitle"], $row["problemId"], $row["problemId"]);
 }

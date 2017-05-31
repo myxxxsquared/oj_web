@@ -8,7 +8,6 @@ $stmt->bind_param('d', $_GET["submitId"]);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$result = mysql_query($q);
 if($row = $result->fetch_assoc())
 {
     $userId = $row['userId'];

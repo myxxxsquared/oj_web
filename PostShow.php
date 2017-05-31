@@ -51,7 +51,7 @@ $stmt = $dbConnection->prepare("select * from `Post` where postId = ?");
 $stmt->bind_param('d', $_GET['postId']);
 $stmt->execute();
 $result = $stmt->get_result();
-$row=$result->fetch_assoc($result);
+$row=$result->fetch_assoc();
 
 $format = '
 <h2>%s. %s</h2>

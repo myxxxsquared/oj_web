@@ -54,7 +54,7 @@ if (! $_SESSION["admin"]) {
 <?php
 
 require_once("mysqliconn.php");
-$stmt = $dbConnection->prepare("select COUNT(*) as c from `Submit` where problemId=");
+$stmt = $dbConnection->prepare("select COUNT(*) as c from `Submit` where problemId= ?");
 $stmt->bind_param('d', $_GET['problemId']);
 $stmt->execute();
 $result = $stmt->get_result();
