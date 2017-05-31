@@ -24,5 +24,7 @@ if ($_SESSION['admin'] || ($userId == $_SESSION['user'])) {
 } else {
     echo("<script>alert('Access denied!');</script>");
 }
+$stmt->close();
+$dbConnection->close();
 ?>
 </pre>

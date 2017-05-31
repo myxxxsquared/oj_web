@@ -67,6 +67,9 @@ while($row=$result->fetch_assoc())
 {
 	printf($format, $row["problemId"], $row["problemId"], $row["problemTitle"], $row["problemId"], $row["problemId"]);
 }
+
+$stmt->close();
+$dbConnection->close();
 ?>
 
 </table>

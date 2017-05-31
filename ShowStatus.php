@@ -87,6 +87,10 @@ while($row=$result->fetch_assoc())
            $row["submitTime"], $row["result"], $row["runTime"],
            $row["memUsed"], $view_src);
 }
+
+$stmt->close();
+$dbConnection->close();
+
 ?>
 
 </table>

@@ -131,6 +131,8 @@ if ($_SESSION['admin']) {
 </script>
           ');
 }
+$stmt->close();
+$dbConnection->close();
 ?>
 
 
