@@ -15,7 +15,7 @@ if ($_FILES["problemInput"]["error"] > 0 || $_FILES["problemOutput"]["error"] > 
   	echo "<script>alert('上传错误'); window.location.href='index2.php';</script>";
 } else {
 		if($stmt->execute()){
-			$getId=mysql_insert_id();
+			$getId=$dbConnection->insert_id;
 			if(!is_dir("dat/problems/".$getId)){
 				mkdir("dat/problems/".$getId);
 			}

@@ -64,9 +64,8 @@ $stmt->close();
 $stmt = $dbConnection->prepare("select COUNT(*) as c from `Submit` where problemId= ? and result='Accepted'");
 $stmt->bind_param('d', $_GET['problemId']);
 $stmt->execute();
-$result = $stmt->get_result();
-$row=$result->fetch_assoc($result);
-$num2 = $row['c'];
+$stmt->bind_result($num2);
+$stmt->fetch();
 $stmt->close();
 
 $stmt = $dbConnection->prepare("select * from `Problem` where problemId = ?");
@@ -104,7 +103,7 @@ $format = '
 ';
 
 printf($format, $row["problemId"], $row["problemTitle"], $_GET['problemId'], $num1, $num2,$row["timeLimit"],$row["memLimit"], $row["problemTxt"]);
-
+$stmt->close();
 
 $format = '
 <form action="SubmitAdd.php" method="post" enctype="multipart/form-data">
