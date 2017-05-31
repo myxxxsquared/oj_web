@@ -56,16 +56,18 @@ session_start();
                             <option value="user" selected="true">用户</option>
                         </select></td>
                     </tr>
-                    <tr id="switch">
+                    <!-- <tr>
                         <td></td>
                         <td>
                             <label><input type="radio" name="select" value="SignIn" class="form-control form-control2" checked="checked"/>登录</label>
                             <label><input type="radio" name="select" value="SignUp" class="form-control form-control2" />注册</label>
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
                 <div style="text-align: center;">
-                    <input type="submit" name="submit" value="提交" class="btn-primary"/>
+                    <button class="btn-primary" id="login-btn" value="登录"/>
+                    <button class="btn-primary" id="register-btn" class="hide" value="注册"/>
+                    <!-- <input type="submit" name="submit" value="提交" class="btn-primary"/> -->
                 </div>
             </div>
         </form>
@@ -74,9 +76,9 @@ session_start();
 <script type="text/javascript">
     $('#admin').change(function() {
         if ($(this).val() == 'admin') {
-            $('#switch').hide();
+            $('button.hide').hide();
         } else if ($(this).val() == 'user') {
-            $('#switch').show();
+            $('button.hide').show();
         }
     });
 </script>
