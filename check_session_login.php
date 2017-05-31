@@ -62,7 +62,5 @@ if($_POST["select"]=="SignIn"){
 		else{
 			echo "<script>alert('注册失败'); window.location.href='Login.php';</script>";
 		}
-
-
 }
 ?>

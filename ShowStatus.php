@@ -86,7 +86,8 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
     <td>%s</td>
 	</tr>';
     if ($row['userId'] == $_SESSION['user'] || $_SESSION['admin']) {
-        $view_src = "<a href='dat/submissions/" . $row["submitId"] . "/src.cpp'>View</a>";
+        # $view_src = "<a href='dat/submissions/" . $row["submitId"] . "/src.cpp'>View</a>";
+        $view_src = "<a href='ViewSrc.php?submitId=" . $row["submitId"] . "'>View</a>";
     } else {
         $view_src = "";
     }
