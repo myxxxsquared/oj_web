@@ -78,7 +78,7 @@ $result=mysql_query($q);
 $row=mysql_fetch_array($result);
 $format = '
 <h2 align="center">%s. %s</h2>
-<div align="center"><a href="PostList.php?problemId=%s">前往本题讨论板</a></div>
+<div align="center" id="href-div"><a href="PostList.php?problemId=%s">前往本题讨论板</a>&nbsp;&nbsp;</div>
 <table class="table-striped">
 <tr>
     <td>提交次数: </td>
@@ -126,6 +126,15 @@ if($_SESSION['user']){
 </div>
 </div>
 
+<?php
+if ($_SESSION['admin']) {
+    echo ('
+<script>
+    $(\'<a href="ProblemEdit.php?problemId=' . $row["problemId"]. '"">编辑</a>\').appendTo("#href-div");
+</script>
+          ');
+}
+?>
 
 
 </body>

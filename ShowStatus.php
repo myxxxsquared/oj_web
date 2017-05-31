@@ -43,14 +43,14 @@ if (! $_SESSION["admin"]) {
 ?>
 <div class="jumbotron">
 <div class="container">
-<h2> 状态列表 </h2>
+<h2> 提交列表 </h2>
 <p>
 欢迎你，<?php echo $_SESSION["user"]; ?>
 </p>
 
 <div class="container" style="margin-top: 20px;">
 <table class="table table-striped">
-<tr><th>提交号</th><th>题目号</th><th>用户</th><th>提交时间</th><th>结果</th><th>运行时间 (ms)</th><th>内存用量 (Byte)</th></tr>
+<tr><th>题目号</th><th>用户</th><th>提交时间</th><th>结果</th><th>运行时间 (ms)</th><th>内存用量 (Byte)</th></tr>
 <?php
 $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
 //连接数据库
@@ -69,10 +69,10 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
         break;
     }
 	$format = '<tr>
-	<td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>
+	<td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>
 	</tr>';
 
-	printf($format, $row["submitId"], $row["problemId"], $row["userId"], $row["submitTime"], $row["result"], $row["runTime"], $row["memUsed"]);
+	printf($format, $row["problemId"], $row["userId"], $row["submitTime"], $row["result"], $row["runTime"], $row["memUsed"]);
 }
 ?>
 

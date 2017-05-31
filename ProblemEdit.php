@@ -26,7 +26,7 @@ if(! $_SESSION["admin"]){
 <h2> 题目编辑 </h2>
 
 <form action="ProblemUpdate.php" method="post">
-
+<input type="hidden" name="problemId" value="<?php echo($_GET['problemId']); ?>" />
 <?php
 
 $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
