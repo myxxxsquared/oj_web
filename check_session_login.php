@@ -12,9 +12,9 @@ if($_POST["select"]=="SignIn"){
 		$result=mysql_query($q);
 
 
-		$num = mysql_num_rows($result);  
-		if($num)  
-		{  
+		$num = mysql_num_rows($result);
+		if($num)
+		{
 			$_SESSION["admin"]=$_POST["username"];
 			header("location:index2.php");
 			//echo "没有此管理员";
@@ -25,26 +25,31 @@ if($_POST["select"]=="SignIn"){
 			//echo $q;
 		}
 
-	}   
+	}
 
 	else if($_POST["userclass"]=="user"){
-		$q=sprintf("select * from `User` where userId = '%s' and password = '%s'", $_POST["username"], $_POST["password"]);
+		$q=sprintf("select `password` from `User` where userId = '%s'", $_POST["username"]);
 		$result=mysql_query($q);
 
 
-		$num = mysql_num_rows($result);  
-		if($num) 
-		{  
-			$_SESSION["user"]=$_POST["username"];
-			header("location:index1.php");
-		}else{
+		$num = mysql_num_rows($result);
+		if($num != 0)
+		{
+			$password = mysql_result($result, 0);
+			if ($_POST["password"] == $password) {
+				$_SESSION["user"] = $_POST["username"];
+				header("location:index1.php");
+			} else {
+				echo "<script>alert('密码错误'); window.location.href='Login.php';</script>";
+			}
+		} else {
 			echo "<script>alert('没有此用户'); window.location.href='Login.php';</script>";
 		}
 	}
 }else if($_POST["select"]=="SignUp"){
 
 		$q=sprintf("INSERT INTO `OJ`.`User` (`userId`, `password`) VALUES ('%s', '%s')", $_POST["username"], $_POST["password"]);
-				
+
 		$link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
 		mysql_select_db('酒店客房管理系统',$link);//选择数据库
 		mysql_query("set names utf8");//设置编码格式

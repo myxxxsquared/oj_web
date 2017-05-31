@@ -8,9 +8,8 @@ if(! $_SESSION["admin"]  ){
 }
 
 
-$q = sprintf("UPDATE `OJ`.`Problem` SET `problemTitle`='%s', `timeLimit`='%s', `memLimit`='%s', `problemTxt`='%s' WHERE `Problem`.`problemId`='%s'", $_POST["problemTitle"], $_POST["timeLimit"], $_POST["memLimit"], $_POST["problemTxt"], $_POST["problemId"]);
-
-
+$q = sprintf("UPDATE `OJ`.`Problem` SET `problemTitle`='%s', `timeLimit`='%s', `memLimit`='%s', `problemTxt`='%s' WHERE `Problem`.`problemId`='%s';", $_POST["problemTitle"], $_POST["timeLimit"], $_POST["memLimit"], mysql_escape_string($_POST["problemTxt"]), $_POST["problemId"]);
+error_log($q);
 
 
 if ($_FILES["problemInput"]["error"] > 0 || $_FILES["problemOutput"]["error"] > 0){

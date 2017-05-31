@@ -2,9 +2,7 @@
 <!DOCTYPE html>
 
 <?php
-
 session_start();
-
 ?>
 
 <html lang="zh-cn">
@@ -42,18 +40,18 @@ session_start();
             <div class="form-group">
                 <table align="center">
                     <tr>
-                        <td>用户名：</td>
+                        <td><label>用户名：</label></td>
                         <td><input type="text" name="username" value="" class="form-control input-field"/></td>
                     </tr>
                     <tr>
-                        <td>密码：</td>
+                        <td><label>密码：</label></td>
                         <td><input type="password" name="password" value="" class="form-control input-field"/></td>
                     </tr>
                     <tr>
-                        <td>身份: </td>
+                        <td><label>身份: </label></td>
                         <td><select name="userclass" class="form-control input-field" id="admin">
                             <option value="admin">管理员</option>
-                            <option value="user" selected="true">用户</option>
+                            <option value="user" selected="true">普通用户</option>
                         </select></td>
                     </tr>
                     <input type="hidden" name="select" id="reg-log">
