@@ -19,7 +19,7 @@ if ($_FILES["submitCode"]["error"] > 0) {
 			if(!is_dir("dat/submissions/".$getId)){
 				mkdir("dat/submissions/".$getId);
 			}
-			move_uploaded_file($_FILES["submitCode"]["tmp_name"], "dat/problems/".$getId."/src.cpp");
+			move_uploaded_file($_FILES["submitCode"]["tmp_name"], "dat/submissions/".$getId."/src.cpp");
 			shell_exec("/opt/OJ/judge/sendjudge.py ".$getId);
 			echo "<script>alert('提交成功'); window.location.href='ShowStatus.php';</script>";
 		}
