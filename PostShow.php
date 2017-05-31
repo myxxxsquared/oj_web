@@ -46,10 +46,13 @@ $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失
 mysql_select_db('OJ',$link);//选择数据库
 mysql_query("set names utf8");//设置编码格式
 
+require_once("mysqliconn.php");
+$stmt = $dbConnection->prepare("select * from `Post` where postId = ?");
+$stmt->bind_param('d', $_GET['postId']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row=$result->fetch_assoc($result);
 
-$q="select * from `Post` where postId=".$_GET['postId'];
-$result=mysql_query($q);
-$row=mysql_fetch_array($result);
 $format = '
 <h2>%s. %s</h2>
 <table>
@@ -63,8 +66,8 @@ $format = '
 ';
 
 printf($format,$row["postId"], $row["postTitle"], $row["problemId"],$row["userId"], $row["postTxt"] );
-
-
+$stmt->close();
+$dbConnection->close();
 ?>
 </div>
 </div>

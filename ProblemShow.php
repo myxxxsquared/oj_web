@@ -53,29 +53,29 @@ if (! $_SESSION["admin"]) {
 
 <?php
 
-$link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
-mysql_select_db('OJ',$link);//选择数据库
-mysql_query("set names utf8");//设置编码格式
+require_once("mysqliconn.php");
+$stmt = $dbConnection->prepare("select COUNT(*) as c from `Submit` where problemId=");
+$stmt->bind_param('d', $_GET['problemId']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row=$result->fetch_assoc($result);
+$num1 =  $row['c'];
+$stmt->close();
 
+$stmt = $dbConnection->prepare("select COUNT(*) as c from `Submit` where problemId= ? and result='Accepted'");
+$stmt->bind_param('d', $_GET['problemId']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row=$result->fetch_assoc($result);
+$num2 = $row['c'];
+$stmt->close();
 
-$q1="select COUNT(*) as c from `Submit` where problemId=".$_GET['problemId'];
-$result1=mysql_query($q1);
-$row1=mysql_fetch_array($result1);
+$stmt = $dbConnection->prepare("select * from `Problem` where problemId = ?");
+$stmt->bind_param('d', $_GET['problemId']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row=$result->fetch_assoc($result);
 
-$num1 =  $row1['c'];
-
-$q2=sprintf("select COUNT(*) as c from `Submit` where problemId=%s and result='Accepted'" , $_GET['problemId']);
-$result2 = mysql_query($q2);
-$row2 = mysql_fetch_array($result2);
-
-$num2 = $row2['c'];
-
-
-
-
-$q="select * from `Problem` where problemId=".$_GET['problemId'];
-$result=mysql_query($q);
-$row=mysql_fetch_array($result);
 $format = '
 <h2 align="center">%s. %s</h2>
 <div align="center" id="href-div"><a href="PostList.php?problemId=%s">前往本题讨论板</a>&nbsp;&nbsp;</div>
@@ -105,7 +105,6 @@ $format = '
 ';
 
 printf($format, $row["problemId"], $row["problemTitle"], $_GET['problemId'], $num1, $num2,$row["timeLimit"],$row["memLimit"], $row["problemTxt"]);
-
 
 
 $format = '

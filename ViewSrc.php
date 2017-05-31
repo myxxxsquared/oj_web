@@ -1,14 +1,20 @@
 <?php
 
 session_start();
-$link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
-    mysql_select_db('OJ',$link);//选择数据库
-    mysql_query("set names utf8");//设置编码格式
 
-$q=sprintf("select `userId` from `Submit` where `submitId` = '%s';", $_GET["submitId"]);
+require_once("mysqliconn.php");
+$stmt = $dbConnection->prepare("select `userId` from `Submit` where `submitId` = ?");
+$stmt->bind_param('d', $_GET["submitId"]);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $result = mysql_query($q);
-$userId = mysql_result($result, 0);
+if($row = $result->fetch_assoc())
+{
+    $userId = $row['userId'];
+}else{
+    echo("<script>alert('No such problem.');</script>");
+}
 
 ?>
 

@@ -2,6 +2,7 @@
 
 <?php 
 
+die("abandoned file");
 
 session_start();
 if(! $_SESSION["admin"]){

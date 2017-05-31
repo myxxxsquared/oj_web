@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-
 <?php
-
 
 session_start();
 if(! $_SESSION["user"] && ! $_SESSION["admin"]){
 	header("location:Login.php");
 }
-
-
-
-
-
 ?>
 
 <html lang="zh-cn">
@@ -77,23 +70,20 @@ if($_GET['problemId'] && $_GET['problemId']!="") {
 <table class="table table-striped">
 <tr><th>编号</th><th>标题</th><th>作者</th></tr>
 <?php
-$link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
-//连接数据库
-mysql_select_db('OJ',$link);//选择数据库
-mysql_query("set names utf8");//设置编码格式
 
-$q="select * from `Post`";//设置查询指令
+require_once("mysqliconn.php");
 
 if($_GET['problemId'] && $_GET['problemId']!=""){
-	$q= sprintf("select * from `Post` WHERE `problemId` = '%s'", $_GET['problemId']);
+	$stmt = $dbConnection->prepare("select * from `Post` WHERE `problemId` = ?");
+	$stmt->bind_param('d', $_GET['problemId']);
+}else{
+	$stmt = $dbConnection->prepare("select * from `Post`");
 }
 
+$stmt->execute();
+$result = $stmt->get_result();
 
-
-$result=mysql_query($q);//执行查询
-while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出一条
-{
-	$format = '
+$format = '
 	<tr>
 	<td>%s</td>
 	<td><a href="PostShow.php?postId=%s">%s</a></td>
@@ -101,8 +91,12 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
 	</tr>
 	';
 
+while($row=$result->fetch_assoc())
+{
 	printf($format, $row["postId"], $row["postId"],  $row["postTitle"],  $row["userId"] );
 }
+$stmt->close();
+$dbConnection->close();
 ?>
 
 </table>

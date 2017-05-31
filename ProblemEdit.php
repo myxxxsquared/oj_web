@@ -29,16 +29,12 @@ if(! $_SESSION["admin"]){
 <input type="hidden" name="problemId" value="<?php echo($_GET['problemId']); ?>" />
 <?php
 
-$link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
-mysql_select_db('OJ',$link);//选择数据库
-mysql_query("set names utf8");//设置编码格式
-
-
-$q="select * from `Problem` where problemId=".$_GET['problemId'];
-$result=mysql_query($q);
-
-$row=mysql_fetch_array($result);
-
+require_once("mysqliconn.php");
+$stmt = $dbConnection->prepare("select * from `Problem` where problemId = ?");
+$stmt->bind_param('d', $_GET['problemId']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row=$result->fetch_assoc($result);
 
 $format = '
 <table>
@@ -61,6 +57,8 @@ $format = '
 ';
 
 printf($format, $row["problemTitle"],$row["timeLimit"],$row["memLimit"], $row["problemTxt"]);
+$stmt->close();
+$dbConnection->close();
 ?>
 
 

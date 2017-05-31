@@ -60,23 +60,12 @@ if (! $_SESSION["admin"]) {
     <th>源代码</th>
 </tr>
 <?php
-$link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
-//连接数据库
-mysql_select_db('OJ',$link);//选择数据库
-mysql_query("set names utf8");//设置编码格式
 
-$q="select * from Submit order by submitId desc";//设置查询指令
-$result=mysql_query($q);//执行查询
-$myiiiii = 0;
+require_once("mysqliconn.php");
+$q="SELECT * FROM Submit ORDER BY submitId DESC LIMIT 30";
+$result = $dbConnection->query($q);
 
-while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出一条
-{
-    $myiiiii = $myiiiii + 1;
-    if($myiiiii > 30)
-    {
-        break;
-    }
-	$format = '<tr>
+$format = '<tr>
 	<td><a href="ProblemShow.php?problemId=%s">%s</a></td>
     <td>%s</td>
     <td>%s</td>
@@ -85,6 +74,9 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
     <td>%s</td>
     <td>%s</td>
 	</tr>';
+    
+while($row=$result->fetch_assoc())
+{
     if ($row['userId'] == $_SESSION['user'] || $_SESSION['admin']) {
         # $view_src = "<a href='dat/submissions/" . $row["submitId"] . "/src.cpp'>View</a>";
         $view_src = "<a href='ViewSrc.php?submitId=" . $row["submitId"] . "'>View</a>";
