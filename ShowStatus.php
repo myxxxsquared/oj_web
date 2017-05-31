@@ -57,6 +57,7 @@ if (! $_SESSION["admin"]) {
     <th>结果</th>
     <th>运行时间 (ms)</th>
     <th>内存用量 (Byte)</th>
+    <th>源代码</th>
 </tr>
 <?php
 $link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
@@ -82,9 +83,16 @@ while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出�
     <td>%s</td>
     <td>%s</td>
     <td>%s</td>
+    <td>%s</td>
 	</tr>';
-
-	printf($format, $row["problemId"], $row["problemId"], $row["userId"], $row["submitTime"], $row["result"], $row["runTime"], $row["memUsed"]);
+    if ($row['userId'] == $_SESSION['user'] || $_SESSION['admin']) {
+        $view_src = "<a href='dat/submissions/" . $row["submitId"] . "/src.cpp'>View</a>";
+    } else {
+        $view_src = "";
+    }
+	printf($format, $row["problemId"], $row["problemId"], $row["userId"],
+           $row["submitTime"], $row["result"], $row["runTime"],
+           $row["memUsed"], $view_src);
 }
 ?>
 
