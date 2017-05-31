@@ -58,7 +58,7 @@ $stmt = $dbConnection->prepare("SELECT COUNT(*) as c from `Submit` where problem
 $stmt->bind_param('d', $_GET['problemId']);
 $stmt->execute();
 $stmt->bind_result($num1);
-$stmt->fecth_result();
+$stmt->fetch();
 $stmt->close();
 
 $stmt = $dbConnection->prepare("select COUNT(*) as c from `Submit` where problemId= ? and result='Accepted'");
