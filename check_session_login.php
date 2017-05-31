@@ -16,13 +16,7 @@ if($_POST["select"]=="SignIn") {
 			$_SESSION["admin"]=$_POST["username"];
 			header("location:index2.php");
 		}
-<<<<<<< HEAD
-		$stmt.close();
-
-=======
 		$stmt->close();
-		
->>>>>>> aa19b6df4bef843a2fc089e5f32a199ed7c8d83b
 	} else if($_POST["userclass"]=="user") {
 		$stmt = $dbConnection->prepare("select `password` from `User` where userId = ?");
 		$stmt->bind_param('s', $_POST["username"]);
