@@ -44,4 +44,5 @@ if($_POST["select"]=="SignIn") {
 		echo "<script>alert('注册失败'); window.location.href='Login.php';</script>";
 	}
 }
+$dbConnection->close();
 ?>

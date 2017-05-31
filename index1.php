@@ -54,21 +54,20 @@ function del(){
 <caption>题目列表</caption>
 <tr><th>题目编号</th><th>题目名称</th></tr>
 <?php
-$link=mysql_connect('localhost:3306','root','phisics')or die("数据库连接失败");
-//连接数据库
-mysql_select_db('OJ',$link);//选择数据库
-mysql_query("set names utf8");//设置编码格式
+require_once("mysqliconn.php");
+$q="SELECT * FROM `Problem`";//设置查询指令
+$result = $dbConnection->query($q);
 
-$q="select * from Problem";//设置查询指令
-$result=mysql_query($q);//执行查询
-while($row=mysql_fetch_assoc($result))//将result结果集中查询结果取出一条
-{
-	$format = '<tr>
-	<td>%s</td><td><a href="ProblemShow.php?problemId=%s">%s</a></td>
-	</tr>';
+$format = '
+<tr>
+	<td>%s</td>
+    <td><a href="ProblemShow.php?problemId=%s">%s</a></td>
+</tr>';
 
+while($row=mysql_fetch_assoc($result)) {
 	printf($format, $row["problemId"], $row["problemId"], $row["problemTitle"]);
 }
+$dbConnection->close();
 ?>
 
 </table>
