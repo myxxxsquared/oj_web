@@ -55,7 +55,7 @@ function del(){
 <tr><th>题目编号</th><th>题目名称</th></tr>
 <?php
 require_once("mysqliconn.php");
-$q="SELECT * FROM `Problem`";//设置查询指令
+$q="SELECT * FROM `Problem`";
 $result = $dbConnection->query($q);
 
 $format = '
@@ -64,7 +64,7 @@ $format = '
     <td><a href="ProblemShow.php?problemId=%s">%s</a></td>
 </tr>';
 
-while($row=$result->fetch_row()) {
+while($row=$result->fetch_object()) {
 	printf($format, $row["problemId"], $row["problemId"], $row["problemTitle"]);
 }
 $result->close();
