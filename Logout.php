@@ -6,7 +6,4 @@ unset($_SESSION["admin"]);
 
 header("location:Login.php");
 
-
-
-
 ?>
