@@ -16,6 +16,8 @@ if($_POST["select"]=="SignIn") {
 			$_SESSION["admin"]=$_POST["username"];
 			header("location:index2.php");
 		}
+		$stmt.close();
+		
 	} else if($_POST["userclass"]=="user") {
 		$stmt = $dbConnection->prepare("select `password` from `User` where userId = ?");
 		$stmt->bind_param('s', $_POST["username"]);
@@ -32,17 +34,17 @@ if($_POST["select"]=="SignIn") {
 				echo "<script>alert('密码错误，请重试'); window.location.href='Login.php';</script>";
 			}
 		}
+		$stmt.close();
 	}
 } else if($_POST["select"]=="SignUp") {
 	$stmt = $dbConnection->prepare("INSERT INTO `User` (userId, password) VALUES (?, ?)");
 	$stmt->bind_param('ss', $_POST["username"], $_POST["password"]);
-	$stmt->execute();
-	
-	if($stmt->affected_rows != 0) {
+	if($stmt->execute()) {
 		echo "<script>alert('注册成功，请登录'); window.location.href='Login.php';</script>";
 	} else {
 		echo "<script>alert('注册失败'); window.location.href='Login.php';</script>";
 	}
+	$stmt.close();
 }
 $dbConnection->close();
 ?>

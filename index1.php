@@ -64,9 +64,10 @@ $format = '
     <td><a href="ProblemShow.php?problemId=%s">%s</a></td>
 </tr>';
 
-while($row=mysql_fetch_assoc($result)) {
+while($row=$result->fetch_row()) {
 	printf($format, $row["problemId"], $row["problemId"], $row["problemTitle"]);
 }
+$result->close();
 $dbConnection->close();
 ?>
 
