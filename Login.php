@@ -56,6 +56,7 @@ session_start();
                             <option value="user" selected="true">用户</option>
                         </select></td>
                     </tr>
+                    <input type="hidden" name="select" id="reg-log">
                     <!-- <tr>
                         <td></td>
                         <td>
@@ -65,8 +66,8 @@ session_start();
                     </tr> -->
                 </table>
                 <div style="text-align: center;">
-                    <button class="btn-primary" id="login-btn" value="登录"/>
-                    <button class="btn-primary" id="register-btn" class="hide" value="注册"/>
+                    <button class="btn-primary" id="login-btn">登录</button>
+                    <button class="btn-primary reghide" id="register-btn">注册</button>
                     <!-- <input type="submit" name="submit" value="提交" class="btn-primary"/> -->
                 </div>
             </div>
@@ -76,11 +77,19 @@ session_start();
 <script type="text/javascript">
     $('#admin').change(function() {
         if ($(this).val() == 'admin') {
-            $('button.hide').hide();
+            $('#register-btn').hide();
         } else if ($(this).val() == 'user') {
-            $('button.hide').show();
+            $('#register-btn').show();
         }
     });
+    $('#register-btn').click(function() {
+        $('#reg-log').val('SignUp');
+        $('form.login').submit();
+    })
+    $('#login-btn').click(function() {
+        $('#reg-log').val('SignIn');
+        $('form.login').submit();
+    })
 </script>
 </body>
 
