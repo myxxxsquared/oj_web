@@ -64,7 +64,7 @@ $format = '
     <td><a href="ProblemShow.php?problemId=%s">%s</a></td>
 </tr>';
 
-while($row=$result->fetch_object()) {
+while($row=$result->fetch_assoc()) {
 	printf($format, $row["problemId"], $row["problemId"], $row["problemTitle"]);
 }
 $result->close();
